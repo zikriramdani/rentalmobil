@@ -5,11 +5,13 @@ import DetailsModals from "./modals/details";
 import EditModals from "./modals/edit";
 import DeleteModals from "./modals/delete";
 
-// Data
-import ListUsers from "../../assets/data/users.json";
+// Redux
+import { useSelector, useDispatch } from 'react-redux';
+import { getListUsers } from "../../redux/action/users/creator";
 
 function Index() {
-	const [dataUsers, setDataUsers] = useState([]);
+	const usersList = useSelector((state) => state.users.usersList)
+  const dispatch = useDispatch();
 
 	const [showDetails, setShowDetails] = useState(false);
 	const [showEdit, setShowEdit] = useState(false);
@@ -27,24 +29,24 @@ function Index() {
 		setShowDelete(id);
 	}
 
-	const getListUsers = () => {
-		setDataUsers(ListUsers)
+	const getDataListUsers = () => {
+		dispatch(getListUsers());
 	}
 
-	useEffect(()=> {
-		getListUsers();
-	}, [])
+	useEffect(() => {
+		getDataListUsers();
+	}, []);
 
-	console.log('ListUsers', dataUsers)
+	console.log('Redux', usersList)
 	
   return (
 		<Fragment>
 			<div className="container mt-3">
 					<div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 gutters-sm">
-						{dataUsers.map((item, i) => (
+						{usersList?.map((item, i) => (
 							<div className="col mb-3" key={item?.id || i}>
 								<div className="card">
-									<img src="https://www.bootdey.com/image/340x120/808080/000000" alt="Cover" className="card-img-top" />
+									<img src={item?.banner} alt="Cover" className="card-img-top" />
 									<div className="card-body text-center">
 										<img src="https://bootdey.com/img/Content/avatar/avatar7.png" style={{width: "100px", marginTop: "-65px"}} alt="User" className="img-fluid img-thumbnail rounded-circle border-0 mb-3" />
 										<h5 className="card-title">{item?.name}</h5>
