@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 
 function Info(props) {
 	const {
+		isDisabledUsername,
 		isDisabled, 
 		valUsername,
 		valName,
@@ -16,7 +17,7 @@ function Info(props) {
 				<div className="col-12 col-sm-4">
 					<div className="mb-3">
 						<label className="col-form-label">Username:</label>
-						<input type="text" className="form-control" name="username" value={valUsername} disabled="true" />
+						<input type="text" className="form-control" name="username" value={valUsername} disabled={isDisabledUsername} />
 					</div>
 				</div>
 				<div className="col-12 col-sm-4">
