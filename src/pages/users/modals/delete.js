@@ -12,8 +12,8 @@ function Delete(props) {
       	<p>Are you sure you want to delete your {id} ?</p> 
 			</Fragment>}
 			footer={<Fragment>
-				<button type="button" class="btn btn-secondary" onClick={onClose}>Cancel</button>
-        <button type="button" class="btn btn-danger">Delete</button>
+				<button type="button" className="btn btn-secondary" onClick={onClose}>Cancel</button>
+        <button type="button" className="btn btn-danger">Delete</button>
 			</Fragment>}
 		/>
   );

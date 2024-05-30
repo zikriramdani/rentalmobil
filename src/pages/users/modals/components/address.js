@@ -11,31 +11,31 @@ function Address(props) {
 
 	return (
 		<Fragment>
-			<div class="row">
-				<div class="col-12">
-					<div class="mb-3">
-						<label class="col-form-label">Address:</label>
-						<textarea class="form-control" name="street" value={valStreet} disabled={isDisabled} />
+			<div className="row">
+				<div className="col-12">
+					<div className="mb-3">
+						<label className="col-form-label">Address:</label>
+						<textarea className="form-control" name="street" value={valStreet} disabled={isDisabled} />
 					</div>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-12 col-sm-4">
-					<div class="mb-3">
-						<label class="col-form-label">Suite:</label>
-						<input type="text" class="form-control" name="suite" value={valSuite} disabled={isDisabled} />
+			<div className="row">
+				<div className="col-12 col-sm-4">
+					<div className="mb-3">
+						<label className="col-form-label">Suite:</label>
+						<input type="text" className="form-control" name="suite" value={valSuite} disabled={isDisabled} />
 					</div>
 				</div>
-				<div class="col-12 col-sm-4">
-					<div class="mb-3">
-						<label class="col-form-label">City:</label>
-						<input type="text" class="form-control" name="city" value={valCity} disabled={isDisabled} />
+				<div className="col-12 col-sm-4">
+					<div className="mb-3">
+						<label className="col-form-label">City:</label>
+						<input type="text" className="form-control" name="city" value={valCity} disabled={isDisabled} />
 					</div>
 				</div>
-				<div class="col-12 col-sm-4">
-					<div class="mb-3">
-						<label class="col-form-label">Zipcode:</label>
-						<input type="text" class="form-control" name="zipcode" value={valZipcode} disabled={isDisabled} />
+				<div className="col-12 col-sm-4">
+					<div className="mb-3">
+						<label className="col-form-label">Zipcode:</label>
+						<input type="text" className="form-control" name="zipcode" value={valZipcode} disabled={isDisabled} />
 					</div>
 				</div>
 			</div>

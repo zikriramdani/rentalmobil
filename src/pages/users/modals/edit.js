@@ -35,8 +35,8 @@ function Edit(props) {
 				/>
 			</Fragment>}
 			footer={<Fragment>
-				<button type="button" class="btn btn-secondary" onClick={onClose}>Cancel</button>
-        <button type="button" class="btn btn-success">Update</button>
+				<button type="button" className="btn btn-secondary" onClick={onClose}>Cancel</button>
+        <button type="button" className="btn btn-success">Update</button>
 			</Fragment>}
 		/>
   );

@@ -12,37 +12,37 @@ function Info(props) {
 
 	return (
 		<Fragment>
-			<div class="row">
-				<div class="col-12 col-sm-4">
-					<div class="mb-3">
-						<label class="col-form-label">Username:</label>
-						<input type="text" class="form-control" name="username" value={valUsername} disabled="true" />
+			<div className="row">
+				<div className="col-12 col-sm-4">
+					<div className="mb-3">
+						<label className="col-form-label">Username:</label>
+						<input type="text" className="form-control" name="username" value={valUsername} disabled="true" />
 					</div>
 				</div>
-				<div class="col-12 col-sm-4">
-					<div class="mb-3">
-						<label class="col-form-label">Name:</label>
-						<input type="text" class="form-control" name="name" value={valName} disabled={isDisabled} />
+				<div className="col-12 col-sm-4">
+					<div className="mb-3">
+						<label className="col-form-label">Name:</label>
+						<input type="text" className="form-control" name="name" value={valName} disabled={isDisabled} />
 					</div>
 				</div>
-				<div class="col-12 col-sm-4">
-					<div class="mb-3">
-						<label class="col-form-label">Email:</label>
-						<input type="email" class="form-control" name="email" value={valEmail} disabled={isDisabled} />
+				<div className="col-12 col-sm-4">
+					<div className="mb-3">
+						<label className="col-form-label">Email:</label>
+						<input type="email" className="form-control" name="email" value={valEmail} disabled={isDisabled} />
 					</div>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-12 col-sm-4">
-					<div class="mb-3">
-						<label class="col-form-label">Phone:</label>
-						<input type="tel" class="form-control" name="phone" value={valPhone} disabled={isDisabled} />
+			<div className="row">
+				<div className="col-12 col-sm-4">
+					<div className="mb-3">
+						<label className="col-form-label">Phone:</label>
+						<input type="tel" className="form-control" name="phone" value={valPhone} disabled={isDisabled} />
 					</div>
 				</div>
-				<div class="col-12 col-sm-4">
-					<div class="mb-3">
-						<label class="col-form-label">Website:</label>
-						<input type="url" class="form-control" name="website" value={valWebsite} disabled={isDisabled} />
+				<div className="col-12 col-sm-4">
+					<div className="mb-3">
+						<label className="col-form-label">Website:</label>
+						<input type="url" className="form-control" name="website" value={valWebsite} disabled={isDisabled} />
 					</div>
 				</div>
 			</div>
