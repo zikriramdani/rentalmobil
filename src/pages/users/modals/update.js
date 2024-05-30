@@ -6,7 +6,7 @@ import Info from "./components/info";
 import Address from "./components/address";
 import Company from "./components/company";
 
-function Edit(props) {
+function Update(props) {
 	const { onClose, onShow, id } = props;
 	
   return (
@@ -42,4 +42,4 @@ function Edit(props) {
   );
 }
 
-export default Edit;
+export default Update;

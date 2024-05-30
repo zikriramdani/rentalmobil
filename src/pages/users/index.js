@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from 'react';
 
 // Modals
 import DetailsModals from "./modals/details";
-import EditModals from "./modals/edit";
+import UpdateModals from "./modals/update";
 import DeleteModals from "./modals/delete";
 
 // Redux
@@ -66,7 +66,7 @@ function Index() {
 
 			{/* Modal */}
 			<DetailsModals onClose={()=> setShowDetails(false)} onShow={showDetails} id={showDetails} />
-			<EditModals onClose={()=> setShowEdit(false)} onShow={showEdit} id={showEdit} />
+			<UpdateModals onClose={()=> setShowEdit(false)} onShow={showEdit} id={showEdit} />
 			<DeleteModals onClose={()=> setShowDelete(false)} onShow={showDelete} id={showDelete} />
 		</Fragment>
   );
