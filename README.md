@@ -1,70 +1,58 @@
-# Getting Started with Create React App
+# Aplikasi Sederhana React
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Please visit <https://zikriramdani.github.io>
 
-## Available Scripts
+## Menjalankan Website
+```bash
+ 1. npm Install,
+ 2. npm start,
+```
 
-In the project directory, you can run:
+## Tentang Website
 
-### `npm start`
+Website ini dibuat menggunakan Framework React JS dengan tambahan package-package lain, seperti :
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```bash
+ 1. Bootstrap,
+ 2. Menampilkan DATA JSON dari file JSON,
+ 3. Redux,
+ 4. Hooks
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Redux
 
-### `npm test`
+```bash
+Redux adalah sebuah aplikasi state management.
+State management adalah cara untuk memfasilitasi komunikasi dan berbagai data lintas komponen.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Redux memiliki 3 komponen utama yaitu Action, Reducer, dan Store :
 
-### `npm run build`
+1. Action
+   Action merupakan Suatu event,
+   di mana ia adalah satu-satunya cara Anda dapat mengirim data dari aplikasi Anda ke Redux Store.
+2. Reducer
+   Reducer merupakan Fungsi murni yang mengambil status aplikasi saat ini.
+   Reducer juga berfungsi untuk melakukan tindakan,dan mengembalikan status baru (new state).
+3. Store
+   Store berfungsi untuk menyimpan status aplikasi.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Keuntungan Menggunakan Redux
+Seperti yang sudah dijelaskan sebelumnya, Redux berkolaborasi dengan React,
+dengan menggunakan Redux React, Anda tidak akan membutuhkan waktu lama untuk meningkatkan state.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Hal ini memudahkan Anda untuk untuk melacak action atau tindakan mana yang menyebabkan perubahan.
+Komponen-komponen yang ada pada Redux,
+tidak perlu menyediakan status atau metode apa pun bagi komponen turunannya
+untuk berbagi data di antara mereka sendiri.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Semuanya ditangani oleh Redux.
+Hal ini pun sangat menyederhanakan aplikasi dan membuatnya lebih mudah untuk dipelihara.
 
-### `npm run eject`
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Hooks
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```bash
+Hooks merupakan penambahan baru pada React 18.3.
+Hooks memungkinkan Anda menggunakan state dan fitur React lainnya tanpa membuat sebuah kelas.
+```
