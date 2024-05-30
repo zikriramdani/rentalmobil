@@ -1,5 +1,8 @@
 import React, { Fragment, useState, useEffect } from 'react';
 
+// Component
+import ZRAlert from '../../components/ZRAlert';
+
 // Modals
 import DetailsModals from "./modals/details";
 import UpdateModals from "./modals/update";
@@ -19,8 +22,16 @@ function Index() {
 	const [showEdit, setShowEdit] = useState(false);
 	const [showDelete, setShowDelete] = useState(false);
 
-	const onClickDetails = (id) => {
+	const [alertSuccessCreate, setAlertSuccessCreate] = useState(false);
+	const [alertErrorCreate, setAlertErrorCreate] = useState(false);
+	const [alertSuccessDelete, setAlertSuccessDelete] = useState(false);
+	const [alertErrorDelete, setAlertErrorDelete] = useState(false);
+
+	const [itemModals, setItemModals] = useState(null);
+
+	const onClickDetails = (id, item) => {
 		setShowDetails(id);
+		setItemModals(item)
 	}
 
 	const onClickEdit = (id) => {
@@ -35,11 +46,35 @@ function Index() {
 		dispatch(getListUsers());
 	}
 
+	const anotherAlertCreate = () => {
+		return (
+		<Fragment>
+			{alertSuccessCreate &&
+				<ZRAlert className="alert-success" title="Successfully added data" />
+			}
+			{alertErrorCreate &&
+				<ZRAlert className="alert-danger" title="Failed to add data" />
+			}
+		</Fragment>
+		)
+	}
+
+	const anotherAlertDelete = () => {
+		return (
+		<Fragment>
+			{alertSuccessDelete &&
+				<ZRAlert className="alert-success" title="Successfully delete data" />
+			}
+			{alertErrorDelete &&
+				<ZRAlert className="alert-danger" title="Failed to delete data" />
+			}
+		</Fragment>
+		)
+	}
+
 	useEffect(() => {
 		getDataListUsers();
-	}, []);
-
-	console.log('Redux', usersList)
+  }, []);
 	
   return (
 		<Fragment>
@@ -49,19 +84,22 @@ function Index() {
 							<button onClick={()=> setShowCreate(true)} className="btn btn-primary btn-sm flex-fill has-icon w-100">Create</button>
 						</div>
 					</div>
+					{anotherAlertCreate()}
+					{anotherAlertDelete()}
 					<div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 gutters-sm">
 						{usersList?.map((item, i) => (
 							<div className="col mb-3" key={item?.id || i}>
 								<div className="card">
-									<img src={item?.banner} alt="Cover" className="card-img-top" />
-									<div className="card-body text-center">
-										<img src="https://bootdey.com/img/Content/avatar/avatar7.png" style={{width: "100px", marginTop: "-65px"}} alt="User" className="img-fluid img-thumbnail rounded-circle border-0 mb-3" />
-										<h5 className="card-title">{item?.name}</h5>
+									<img src={`https://picsum.photos/id/${item?.id}/340/120.webp`} alt="Cover" className="card-img-top" />
+									<div className="card-body text-center"
+									style={{maxHeight: "183px", minHeight: "183px"}}>
+										<img src={`https://picsum.photos/id/${item?.id}/315/315.webp`} style={{width: "100px", marginTop: "-65px"}} alt="User" className="img-fluid img-thumbnail rounded-circle border-0 mb-3" />
+										<h5 className="card-title ZR-text-limit" title={item?.name}>{item?.name}</h5>
 										<p className="text-secondary mb-1">{item?.phone}</p>
-										<p className="text-muted font-size-sm">{item?.email}</p>
+										<p className="text-muted font-size-sm text-truncate" title={item?.email}>{item?.email}</p>
 									</div>
 									<div className="card-footer d-flex">
-										<button onClick={()=> onClickDetails(item?.id)} className="btn btn-block btn-primary btn-sm flex-fill has-icon" type="button">Details</button>
+										<button onClick={()=> onClickDetails(item?.id, item)} className="btn btn-block btn-primary btn-sm flex-fill has-icon" type="button">Details</button>
 										<button onClick={()=> onClickEdit(item?.id)} className="btn btn-block btn-sm btn-success has-icon ms-2" type="button">Edit</button>
 										<button onClick={()=> onClickDelete(item?.id)} className="ms-2 btn btn-block btn-danger btn-sm has-icon text-white" type="button">Delete</button>
 									</div>
@@ -72,10 +110,13 @@ function Index() {
 			</div>
 
 			{/* Modal */}
-			<CreateModals onClose={()=> setShowCreate(false)} onShow={showCreate} />
-			<DetailsModals onClose={()=> setShowDetails(false)} onShow={showDetails} id={showDetails} />
-			<UpdateModals onClose={()=> setShowEdit(false)} onShow={showEdit} id={showEdit} />
-			<DeleteModals onClose={()=> setShowDelete(false)} onShow={showDelete} id={showDelete} />
+			<CreateModals onClose={()=> setShowCreate(false)} onShow={showCreate} setAlertSuccess={setAlertSuccessCreate} alertSuccess={alertSuccessCreate} setAlertError={setAlertErrorCreate} alertError={alertErrorCreate} />
+			<DetailsModals onClose={() => {
+				setShowDetails(false);
+				setItemModals(null);
+			}} onShow={showDetails} dataItem={itemModals} />
+			<UpdateModals onClose={()=> setShowEdit(false)} onShow={showEdit} userId={showEdit} />
+			<DeleteModals onClose={()=> setShowDelete(false)} onShow={showDelete} userId={showDelete} setAlertSuccess={setAlertSuccessDelete} alertSuccess={alertSuccessDelete} setAlertError={setAlertErrorDelete} alertError={alertErrorDelete} />
 		</Fragment>
   );
 }

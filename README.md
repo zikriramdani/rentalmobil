@@ -36,6 +36,7 @@ Aplikasi ini dibuat menggunakan Framework React JS 18.3 dengan tambahan package-
  4. Redux
  5. Redux toolkit
  6. Hooks
+ 7. Node Sass
 ```
 
 Redux

@@ -12,6 +12,20 @@ export const usersReducer = ( state = initialState, action ) => {
       return state
     case actionType.loadUsersResetData:
       return initialState
+    // Create
+    case actionType.createUser:
+      state = {
+        ...state,
+        usersList: [...state.usersList, action.payload]
+      }
+      return state
+    // Delete
+    case actionType.deleteUser:
+      state = {
+        ...state,
+        usersList: state.usersList.filter(user => user.id !== action.payload)
+      };
+      return state;
     default:
       return state
   };
