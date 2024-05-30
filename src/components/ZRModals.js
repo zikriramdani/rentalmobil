@@ -1,12 +1,12 @@
 import React, { Fragment } from "react";
 
 function ZRModals(props) {
-	const { onClose, onShow, title, body, footer } = props;
+	const { onClose, onShow, title, body, footer, customModalDialog } = props;
 	
 	return (
 		<Fragment>
 			<div className={`modal fade ${onShow ? 'show' : ''}`} style={{ display: onShow ? 'block' : '' }} tabIndex="-1">
-				<div className="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
+				<div className={`modal-dialog modal-dialog-scrollable modal-dialog-centered ${customModalDialog ? customModalDialog : "modal-lg"}`}>
 					<div className="modal-content">
 						<div className="modal-header">
 							<h1 className="modal-title fs-5">{title}</h1>
