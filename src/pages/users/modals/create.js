@@ -1,13 +1,144 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
+
+// Modals
 import ZRModals from "../../../components/ZRModals"
 
 // Components
 import Info from "./components/info";
-import Address from "./components/address";
-import Company from "./components/company";
+
+import { useDispatch } from 'react-redux';
+import { createUser } from '../../../redux/action/users/creator';
 
 function Create(props) {
-	const { onClose, onShow } = props;
+	const { onClose, onShow, setAlertSuccess, alertSuccess, setAlertError, alertError } = props;
+	const [formData, setFormData] = useState({
+		banner: "https://www.bootdey.com/image/340x120/808080/000000",
+    username: "",
+    name: "",
+    email: "",
+    phone: "",
+    website: "",
+    address: {
+      street: "",
+      suite: "",
+      city: "",
+      zipcode: "",
+      geo: {
+          lat: "-37.3159",
+          lng: "81.1496"
+      }
+    },
+    company: {
+        name: "",
+        catchPhrase: "",
+        bs: ""
+    }
+  });
+	const [errors, setErrors] = useState({});
+	const [isLoading, setIsLoading] = useState(false);
+
+	const dispatch = useDispatch();
+
+	const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value
+    });
+
+		// Validate the changed field
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [name]: validateField(name, value)
+    }));
+  };
+
+	const validateField = (name, value) => {
+    switch (name) {
+      case "username":
+        return value ? "" : "Username is required.";
+      case "name":
+        return value ? "" : "Name is required.";
+      case "email":
+        if (!value) return "Email is required.";
+        return /\S+@\S+\.\S+/.test(value) ? "" : "Email is invalid.";
+      case "website":
+        if (value && !/^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/.test(value)) return "Website URL is invalid.";
+        return "";
+      default:
+        return "";
+    }
+  };
+
+  const validate = () => {
+    const newErrors = {};
+    for (let [name, value] of Object.entries(formData)) {
+      const error = validateField(name, value);
+      if (error) newErrors[name] = error;
+    }
+    return newErrors;
+  };
+
+	const resetForm = () => {
+		setFormData({
+			banner: "https://www.bootdey.com/image/340x120/808080/000000",
+			username: "",
+			name: "",
+			email: "",
+			phone: "",
+			website: "",
+      address: {
+        street: "",
+        suite: "",
+        city: "",
+        zipcode: "",
+        geo: {
+            lat: "-37.3159",
+            lng: "81.1496"
+        }
+      },
+      company: {
+          name: "",
+          catchPhrase: "",
+          bs: ""
+      }
+		});
+		onClose();
+	}
+
+	const handleSave = async (e) => {
+		e.preventDefault();
+		const validationErrors = validate();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+    } else {
+			setIsLoading(true);
+      try {
+        await dispatch(createUser(formData));
+        setAlertSuccess(true);
+        resetForm();
+      } catch (error) {
+				setAlertError(true);
+      } finally {
+        setIsLoading(false); 
+      }
+    }
+	}
+
+	useEffect(() => {
+		if (alertSuccess) {
+			const timer = setTimeout(() => {
+				setAlertSuccess(false);
+			}, 5000); // 5 seconds
+			return () => clearTimeout(timer);
+		}
+		if (alertError) {
+			const timer = setTimeout(() => {
+				setAlertError(false);
+			}, 5000); // 5 seconds
+			return () => clearTimeout(timer);
+		}
+  }, [alertSuccess, alertError]);
 	
   return (
     <ZRModals onClose={onClose} onShow={onShow}
@@ -15,17 +146,20 @@ function Create(props) {
 			body={<Fragment>
 				<Info
           isDisabledUsername={false}
+					valUsername={formData.username}
+					valName={formData.name}
+					valEmail={formData.email}
+					valPhone={formData.phone}
+					valWebsite={formData.website}
+					onChange={handleChange}
+					errors={errors}
         />
-				<hr />
-				<Address
-				/>
-				<hr />
-				<Company
-				/>
 			</Fragment>}
 			footer={<Fragment>
 				<button type="button" className="btn btn-secondary" onClick={onClose}>Cancel</button>
-        <button type="button" className="btn btn-success">Save</button>
+        <button onClick={(e)=> handleSave(e)} type="button" className="btn btn-success" disabled={isLoading}>
+					{isLoading ? "Saving..." : "Save"}
+				</button>
 			</Fragment>}
 		/>
   );
