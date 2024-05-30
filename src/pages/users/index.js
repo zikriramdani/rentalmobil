@@ -1,8 +1,9 @@
 import React, { Fragment, useState, useEffect } from 'react';
 
 // Modals
-import Details from "./modals/details";
-import Edit from "./modals/edit";
+import DetailsModals from "./modals/details";
+import EditModals from "./modals/edit";
+import DeleteModals from "./modals/delete";
 
 // Data
 import ListUsers from "../../assets/data/users.json";
@@ -12,6 +13,7 @@ function Index() {
 
 	const [showDetails, setShowDetails] = useState(false);
 	const [showEdit, setShowEdit] = useState(false);
+	const [showDelete, setShowDelete] = useState(false);
 
 	const onClickDetails = (id) => {
 		setShowDetails(id);
@@ -19,6 +21,10 @@ function Index() {
 
 	const onClickEdit = (id) => {
 		setShowEdit(id);
+	}
+
+	const onClickDelete = (id) => {
+		setShowDelete(id);
 	}
 
 	const getListUsers = () => {
@@ -47,8 +53,8 @@ function Index() {
 									</div>
 									<div className="card-footer d-flex">
 										<button onClick={()=> onClickDetails(item?.id)} className="btn btn-block btn-primary btn-sm flex-fill has-icon" type="button">Details</button>
-										<button  onClick={()=> onClickEdit(item?.id)} className="btn btn-block btn-sm btn-success has-icon ms-2" type="button">Edit</button>
-										<button className="ms-2 btn btn-block btn-danger btn-sm has-icon text-white" type="button">Delete</button>
+										<button onClick={()=> onClickEdit(item?.id)} className="btn btn-block btn-sm btn-success has-icon ms-2" type="button">Edit</button>
+										<button onClick={()=> onClickDelete(item?.id)} className="ms-2 btn btn-block btn-danger btn-sm has-icon text-white" type="button">Delete</button>
 									</div>
 								</div>
 							</div>
@@ -57,8 +63,9 @@ function Index() {
 			</div>
 
 			{/* Modal */}
-			<Details onClose={()=> setShowDetails(false)} onShow={showDetails} id={showDetails} />
-			<Edit onClose={()=> setShowEdit(false)} onShow={showEdit} id={showEdit} />
+			<DetailsModals onClose={()=> setShowDetails(false)} onShow={showDetails} id={showDetails} />
+			<EditModals onClose={()=> setShowEdit(false)} onShow={showEdit} id={showEdit} />
+			<DeleteModals onClose={()=> setShowDelete(false)} onShow={showDelete} id={showDelete} />
 		</Fragment>
   );
 }
