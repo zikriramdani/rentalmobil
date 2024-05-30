@@ -1,6 +1,8 @@
 import React, { Fragment, useState, useEffect } from 'react';
 
+// Modals
 import Details from "./modals/details";
+import Edit from "./modals/edit";
 
 // Data
 import ListUsers from "../../assets/data/users.json";
@@ -9,9 +11,14 @@ function Index() {
 	const [dataUsers, setDataUsers] = useState([]);
 
 	const [showDetails, setShowDetails] = useState(false);
+	const [showEdit, setShowEdit] = useState(false);
 
 	const onClickDetails = (id) => {
 		setShowDetails(id);
+	}
+
+	const onClickEdit = (id) => {
+		setShowEdit(id);
 	}
 
 	const getListUsers = () => {
@@ -40,7 +47,7 @@ function Index() {
 									</div>
 									<div className="card-footer d-flex">
 										<button onClick={()=> onClickDetails(item?.id)} className="btn btn-block btn-primary btn-sm flex-fill has-icon" type="button">Details</button>
-										<button className="btn btn-block btn-sm btn-success has-icon ms-2" type="button">Edit</button>
+										<button  onClick={()=> onClickEdit(item?.id)} className="btn btn-block btn-sm btn-success has-icon ms-2" type="button">Edit</button>
 										<button className="ms-2 btn btn-block btn-danger btn-sm has-icon text-white" type="button">Delete</button>
 									</div>
 								</div>
@@ -51,6 +58,7 @@ function Index() {
 
 			{/* Modal */}
 			<Details onClose={()=> setShowDetails(false)} onShow={showDetails} id={showDetails} />
+			<Edit onClose={()=> setShowEdit(false)} onShow={showEdit} id={showEdit} />
 		</Fragment>
   );
 }
