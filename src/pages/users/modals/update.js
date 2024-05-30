@@ -14,6 +14,7 @@ function Update(props) {
 			title="Edit"
 			body={<Fragment>
 				<Info
+					isDisabledUsername={true}
 					valUsername={id}
 					valName=""
 					valEmail=""
