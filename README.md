@@ -2,21 +2,40 @@
 
 Please visit <https://zikriramdani.github.io>
 
-## Menjalankan Website
+## Beberapa Fitur yang tersedia:
+
+- Data Users
+  - Create
+  - Read
+  - Update
+  - Delete
+  - Details
+
+## Setup Aplikasi
+
+Jalankan perintah
+
 ```bash
- 1. npm Install,
- 2. npm start,
+npm install
 ```
 
-## Tentang Website
-
-Website ini dibuat menggunakan Framework React JS dengan tambahan package-package lain, seperti :
+Menjalankan aplikasi
 
 ```bash
- 1. Bootstrap,
+npm start
+```
+
+## Tentang Aplikasi
+
+Aplikasi ini dibuat menggunakan Framework React JS 18.3 dengan tambahan package-package lain, seperti :
+
+```bash
+ 1. Bootstrap 5.3,
  2. Menampilkan DATA JSON dari file JSON,
- 3. Redux,
- 4. Hooks
+ 3. React Router
+ 4. Redux
+ 5. Redux toolkit
+ 6. Hooks
 ```
 
 Redux
@@ -56,3 +75,7 @@ Hooks
 Hooks merupakan penambahan baru pada React 18.3.
 Hooks memungkinkan Anda menggunakan state dan fitur React lainnya tanpa membuat sebuah kelas.
 ```
+
+## License
+
+[MIT license](https://opensource.org/licenses/MIT)
