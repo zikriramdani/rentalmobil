@@ -4,6 +4,7 @@ import React, { Fragment, useState, useEffect } from 'react';
 import DetailsModals from "./modals/details";
 import UpdateModals from "./modals/update";
 import DeleteModals from "./modals/delete";
+import CreateModals from "./modals/create";
 
 // Redux
 import { useSelector, useDispatch } from 'react-redux';
@@ -13,6 +14,7 @@ function Index() {
 	const usersList = useSelector((state) => state.users.usersList)
   const dispatch = useDispatch();
 
+	const [showCreate, setShowCreate] = useState(false);
 	const [showDetails, setShowDetails] = useState(false);
 	const [showEdit, setShowEdit] = useState(false);
 	const [showDelete, setShowDelete] = useState(false);
@@ -42,6 +44,11 @@ function Index() {
   return (
 		<Fragment>
 			<div className="container mt-3">
+					<div className="gutters-sm mb-3 row row-cols-1 row-cols-md-3 row-cols-sm-2 row-cols-xl-4">
+						<div className="col">
+							<button onClick={()=> setShowCreate(true)} className="btn btn-primary btn-sm flex-fill has-icon w-100">Create</button>
+						</div>
+					</div>
 					<div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 gutters-sm">
 						{usersList?.map((item, i) => (
 							<div className="col mb-3" key={item?.id || i}>
@@ -65,6 +72,7 @@ function Index() {
 			</div>
 
 			{/* Modal */}
+			<CreateModals onClose={()=> setShowCreate(false)} onShow={showCreate} />
 			<DetailsModals onClose={()=> setShowDetails(false)} onShow={showDetails} id={showDetails} />
 			<UpdateModals onClose={()=> setShowEdit(false)} onShow={showEdit} id={showEdit} />
 			<DeleteModals onClose={()=> setShowDelete(false)} onShow={showDelete} id={showDelete} />
