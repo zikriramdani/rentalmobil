@@ -4,12 +4,14 @@ import Users from "./pages/users";
 
 function App() {
   return (
-		<BrowserRouter>
-			<Routes>
-				<Route path="/" element={<Users />} />
-				<Route path="*" element={<Navigate to="/" />} />
-			</Routes>
-		</BrowserRouter>
+		<div className="App">
+			<BrowserRouter>
+				<Routes>
+					<Route path="/" element={<Users />} />
+					<Route path="*" element={<Navigate to="/" />} />
+				</Routes>
+			</BrowserRouter>
+		</div>
 	)
 }
 
