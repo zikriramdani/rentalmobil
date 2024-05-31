@@ -1,4 +1,6 @@
 import React, { Fragment, useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+
 import ZRModals from "../../../components/ZRModals"
 
 // Components
@@ -41,7 +43,6 @@ function Update(props) {
 
 	const handleChange = (e, object) => {
     const { name, value } = e.target;
-		console.log('n', name)
 		if(object === "address") {
 			setFormData(prevFormData => ({
 				...prevFormData,
@@ -210,7 +211,7 @@ function Update(props) {
 					valWebsite={formData?.website}
 					onChange={handleChange}
 					errors={errors}
-		 		/>
+				/>
 				<hr />
 				<Address
 					valStreet={formData?.address?.street}
@@ -236,5 +237,16 @@ function Update(props) {
 		/>
   );
 }
+
+// Define prop types
+Update.propTypes = {
+  onClose: PropTypes.any, 
+	onShow: PropTypes.any, 
+	dataItem: PropTypes.any, 
+	setAlertSuccess: PropTypes.any, 
+	alertSuccess: PropTypes.any, 
+	setAlertError: PropTypes.any, 
+	alertError: PropTypes.any
+};
 
 export default Update;

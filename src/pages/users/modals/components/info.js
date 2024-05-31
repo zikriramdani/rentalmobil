@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import PropTypes from 'prop-types';
 
 function Info(props) {
 	const {
@@ -62,5 +63,19 @@ function Info(props) {
 		</Fragment>
 	);
 }
+
+// Define prop types
+Info.propTypes = {
+	isDisabledUsername: PropTypes.any,
+	isDisabled: PropTypes.any,
+	valImages: PropTypes.any,
+	valUsername: PropTypes.any,
+	valName: PropTypes.any,
+	valEmail: PropTypes.any,
+	valPhone: PropTypes.any,
+	valWebsite: PropTypes.any,
+	onChange: PropTypes.any,
+	errors: PropTypes.any,
+};
 
 export default Info;

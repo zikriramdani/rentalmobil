@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import PropTypes from 'prop-types';
 
 function ZRModals(props) {
 	const { onClose, onShow, title, body, footer, customModalDialog } = props;
@@ -26,6 +27,16 @@ function ZRModals(props) {
 			}
 		</Fragment>
 	)
+}
+
+// Define prop types
+ZRModals.propTypes = {
+  onClose: PropTypes.any,
+	onShow: PropTypes.any,
+	title: PropTypes.any,
+	body: PropTypes.any,
+	footer: PropTypes.any,
+	customModalDialog: PropTypes.any,
 };
 
 export default ZRModals;

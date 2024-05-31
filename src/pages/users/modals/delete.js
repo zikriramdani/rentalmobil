@@ -1,4 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 // Modals
 import ZRModals from "../../../components/ZRModals";
@@ -45,9 +46,7 @@ function Delete(props) {
     <ZRModals onClose={onClose} onShow={onShow}
 			title="Delete"
 			customModalDialog=" "
-			body={<Fragment>
-      	<p>Are you sure you want to delete your {userId} ?</p> 
-			</Fragment>}
+			body={<p>Are you sure you want to delete your {userId} ?</p>}
 			footer={<Fragment>
 				<button onClick={onClose} type="button" className="btn btn-secondary" >Cancel</button>
         <button onClick={(e)=> handleDelete(e)} type="button" className="btn btn-danger" disabled={isLoading}>
@@ -57,5 +56,16 @@ function Delete(props) {
 		/>
   );
 }
+
+// Define prop types
+Delete.propTypes = {
+	onClose: PropTypes.any,
+	onShow: PropTypes.any,
+	userId: PropTypes.any,
+	setAlertSuccess: PropTypes.any,
+	alertSuccess: PropTypes.any,
+	setAlertError: PropTypes.any,
+	alertError: PropTypes.any,
+};
 
 export default Delete;

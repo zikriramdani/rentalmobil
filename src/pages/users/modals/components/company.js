@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import PropTypes from 'prop-types';
 
 function Company(props) {
 	const {
@@ -34,5 +35,14 @@ function Company(props) {
 		</Fragment>
 	);
 }
+
+// Define prop types
+Company.propTypes = {
+	isDisabled: PropTypes.any,
+	valCompanyName: PropTypes.any,
+	valCatchPhrase: PropTypes.any,
+	valBs: PropTypes.any,
+	onChange: PropTypes.any,
+};
 
 export default Company;
