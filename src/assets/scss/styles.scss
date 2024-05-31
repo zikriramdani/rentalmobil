@@ -1,9 +1,2 @@
-.ZR-text-limit {
-  /* Limit text to two lines */
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2; /* Limit the number of lines */
-  -webkit-box-orient: vertical;
-  white-space: normal;
-}
+// Import
+@import './components/text';
