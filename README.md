@@ -1,6 +1,6 @@
 # Aplikasi Sederhana React
 
-Please visit <https://zikriramdani.github.io>
+Please visit <https://aplikasisederhanareact.netlify.app>
 
 ## Beberapa Fitur yang tersedia:
 
@@ -25,19 +25,22 @@ Menjalankan aplikasi
 npm start
 ```
 
+## Deploy
+```bash
+Netlify
+```
+
 ## Tentang Aplikasi
 
 Aplikasi ini dibuat menggunakan Framework React JS 18.3 dengan tambahan package-package lain, seperti :
 
 ```bash
  1. Bootstrap 5.3,
- 2. Menampilkan DATA JSON dari file JSON,
- 3. React Router
- 4. Redux
- 5. Redux toolkit
- 6. Hooks
- 7. Node Sass
- 8. Eslint
+ 2. React Router
+ 3. Redux
+ 4. Redux toolkit
+ 5. Eslint
+ 6. Prettier
 ```
 
 Redux
