@@ -1,7 +1,6 @@
 import { actionType } from '../users/type';
 import { generateRandomId } from '../../../helpers/utils';
 
-
 // Data Json
 import DataUsers from "../../../assets/data/users.json";
 
@@ -30,4 +29,10 @@ export const createUser = (users) => ({
 export const deleteUser = (userId) => ({
   type: actionType.deleteUser,
   payload: userId,
+});
+
+// Update
+export const updateUser = (userId, updatedFields) => ({
+  type: actionType.updateUser,
+  payload: { userId, updatedFields }
 });

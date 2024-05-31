@@ -26,6 +26,17 @@ export const usersReducer = ( state = initialState, action ) => {
         usersList: state.usersList.filter(user => user.id !== action.payload)
       };
       return state;
+		// Update
+		case actionType.updateUser:
+			state = {
+        ...state,
+        usersList: state.usersList.map(user =>
+          user.id === action.payload.userId
+            ? { ...user, ...action.payload.updatedFields }
+            : user
+        ),
+      };
+			return state;
     default:
       return state
   };

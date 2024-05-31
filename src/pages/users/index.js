@@ -26,16 +26,19 @@ function Index() {
 	const [alertErrorCreate, setAlertErrorCreate] = useState(false);
 	const [alertSuccessDelete, setAlertSuccessDelete] = useState(false);
 	const [alertErrorDelete, setAlertErrorDelete] = useState(false);
+	const [alertSuccessEdit, setAlertSuccessEdit] = useState(false);
+	const [alertErrorEdit, setAlertErrorEdit] = useState(false);
 
 	const [itemModals, setItemModals] = useState(null);
 
 	const onClickDetails = (id, item) => {
 		setShowDetails(id);
-		setItemModals(item)
+		setItemModals(item);
 	}
 
-	const onClickEdit = (id) => {
+	const onClickEdit = (id, item) => {
 		setShowEdit(id);
+		setItemModals(item);
 	}
 
 	const onClickDelete = (id) => {
@@ -72,6 +75,19 @@ function Index() {
 		)
 	}
 
+	const anotherAlertEdit = () => {
+		return (
+		<Fragment>
+			{alertSuccessEdit &&
+				<ZRAlert className="alert-success" title="Successfully update data" />
+			}
+			{alertErrorEdit &&
+				<ZRAlert className="alert-danger" title="Failed to update data" />
+			}
+		</Fragment>
+		)
+	}
+
 	useEffect(() => {
 		getDataListUsers();
   }, []);
@@ -86,6 +102,7 @@ function Index() {
 					</div>
 					{anotherAlertCreate()}
 					{anotherAlertDelete()}
+					{anotherAlertEdit()}
 					<div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 gutters-sm">
 						{usersList?.map((item, i) => (
 							<div className="col mb-3" key={item?.id || i}>
@@ -100,7 +117,7 @@ function Index() {
 									</div>
 									<div className="card-footer d-flex">
 										<button onClick={()=> onClickDetails(item?.id, item)} className="btn btn-block btn-primary btn-sm flex-fill has-icon" type="button">Details</button>
-										<button onClick={()=> onClickEdit(item?.id)} className="btn btn-block btn-sm btn-success has-icon ms-2" type="button">Edit</button>
+										<button onClick={()=> onClickEdit(item?.id, item)} className="btn btn-block btn-sm btn-success has-icon ms-2" type="button">Edit</button>
 										<button onClick={()=> onClickDelete(item?.id)} className="ms-2 btn btn-block btn-danger btn-sm has-icon text-white" type="button">Delete</button>
 									</div>
 								</div>
@@ -115,7 +132,10 @@ function Index() {
 				setShowDetails(false);
 				setItemModals(null);
 			}} onShow={showDetails} dataItem={itemModals} />
-			<UpdateModals onClose={()=> setShowEdit(false)} onShow={showEdit} userId={showEdit} />
+			<UpdateModals onClose={() => {
+				setShowEdit(false);
+				setItemModals(null);
+			}} onShow={showEdit} dataItem={itemModals} setAlertSuccess={setAlertSuccessEdit} alertSuccess={alertSuccessEdit} setAlertError={setAlertErrorEdit} alertError={alertErrorEdit}  />
 			<DeleteModals onClose={()=> setShowDelete(false)} onShow={showDelete} userId={showDelete} setAlertSuccess={setAlertSuccessDelete} alertSuccess={alertSuccessDelete} setAlertError={setAlertErrorDelete} alertError={alertErrorDelete} />
 		</Fragment>
   );

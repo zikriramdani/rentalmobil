@@ -21,7 +21,7 @@ function Company(props) {
 				<div className="col-12 col-sm-4">
 					<div className="mb-3">
 						<label className="col-form-label">CatchPhrase</label>
-						<input onChange={onChange} type="text" className="form-control" name="catchphrase" value={valCatchPhrase} disabled={isDisabled} />
+						<input onChange={onChange} type="text" className="form-control" name="catchPhrase" value={valCatchPhrase} disabled={isDisabled} />
 					</div>
 				</div>
 				<div className="col-12 col-sm-4">

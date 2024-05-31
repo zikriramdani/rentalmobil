@@ -3,4 +3,5 @@ export const actionType = {
 	loadUsersResetData: 'load-users-reset-data',
 	createUser: 'create-users',
 	deleteUser: 'delete-users',
+	updateUser: 'update-users',
 }
