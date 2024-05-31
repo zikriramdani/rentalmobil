@@ -26,6 +26,7 @@ npm start
 ```
 
 ## Deploy
+
 ```bash
 Netlify
 ```
