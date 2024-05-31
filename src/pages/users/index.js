@@ -100,60 +100,68 @@ function Index() {
         {anotherAlertCreate()}
         {anotherAlertDelete()}
         {anotherAlertEdit()}
-        <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 gutters-sm">
-          {usersList?.map((item, i) => (
-            <div className="col mb-3" key={item?.id || i}>
-              <div className="card">
-                <img
-                  src={`https://picsum.photos/id/${item?.id}/340/120.webp`}
-                  alt="Cover"
-                  className="card-img-top"
-                />
-                <div
-                  className="card-body text-center"
-                  style={{ maxHeight: '183px', minHeight: '183px' }}
-                >
+        {usersList?.length > 0 ? (
+          <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 gutters-sm">
+            {usersList?.map((item, i) => (
+              <div className="col mb-3" key={item?.id || i}>
+                <div className="card">
                   <img
-                    src={`https://picsum.photos/id/${item?.id}/315/315.webp`}
-                    style={{ width: '100px', marginTop: '-65px' }}
-                    alt="User"
-                    className="img-fluid img-thumbnail rounded-circle border-0 mb-3"
+                    src={`https://picsum.photos/id/${item?.id}/340/120.webp`}
+                    alt="Cover"
+                    className="card-img-top"
                   />
-                  <h5 className="card-title ZR-text-limit" title={item?.name}>
-                    {item?.name}
-                  </h5>
-                  <p className="text-secondary mb-1">{item?.phone}</p>
-                  <p className="text-muted font-size-sm text-truncate" title={item?.email}>
-                    {item?.email}
-                  </p>
-                </div>
-                <div className="card-footer d-flex">
-                  <button
-                    onClick={() => onClickDetails(item?.id, item)}
-                    className="btn btn-block btn-primary btn-sm flex-fill has-icon"
-                    type="button"
+                  <div
+                    className="card-body text-center"
+                    style={{ maxHeight: '183px', minHeight: '183px' }}
                   >
-                    Details
-                  </button>
-                  <button
-                    onClick={() => onClickEdit(item?.id, item)}
-                    className="btn btn-block btn-sm btn-success has-icon ms-2"
-                    type="button"
-                  >
-                    Edit
-                  </button>
-                  <button
-                    onClick={() => onClickDelete(item?.id)}
-                    className="ms-2 btn btn-block btn-danger btn-sm has-icon text-white"
-                    type="button"
-                  >
-                    Delete
-                  </button>
+                    <img
+                      src={`https://picsum.photos/id/${item?.id}/315/315.webp`}
+                      style={{ width: '100px', marginTop: '-65px' }}
+                      alt="User"
+                      className="img-fluid img-thumbnail rounded-circle border-0 mb-3"
+                    />
+                    <h5 className="card-title ZR-text-limit" title={item?.name}>
+                      {item?.name}
+                    </h5>
+                    <p className="text-secondary mb-1">{item?.phone}</p>
+                    <p className="text-muted font-size-sm text-truncate" title={item?.email}>
+                      {item?.email}
+                    </p>
+                  </div>
+                  <div className="card-footer d-flex">
+                    <button
+                      onClick={() => onClickDetails(item?.id, item)}
+                      className="btn btn-block btn-primary btn-sm flex-fill has-icon"
+                      type="button"
+                    >
+                      Details
+                    </button>
+                    <button
+                      onClick={() => onClickEdit(item?.id, item)}
+                      className="btn btn-block btn-sm btn-success has-icon ms-2"
+                      type="button"
+                    >
+                      Edit
+                    </button>
+                    <button
+                      onClick={() => onClickDelete(item?.id)}
+                      className="ms-2 btn btn-block btn-danger btn-sm has-icon text-white"
+                      type="button"
+                    >
+                      Delete
+                    </button>
+                  </div>
                 </div>
               </div>
+            ))}
+          </div>
+        ) : (
+          <div className="col-12">
+            <div className="alert alert-info text-center" role="alert">
+              No data.
             </div>
-          ))}
-        </div>
+          </div>
+        )}
       </div>
 
       {/* Modal */}

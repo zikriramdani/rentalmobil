@@ -1,3 +1,3 @@
 export const generateRandomId = () => {
-  return String(Math.floor(Math.random() * 900) + 100);
+  return String(Math.floor(Math.random() * 90) + 10);
 };
