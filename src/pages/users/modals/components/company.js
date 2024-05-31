@@ -2,7 +2,13 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 function Company(props) {
-  const { isDisabled, valCompanyName, valCatchPhrase, valBs, onChange } = props;
+  const { 
+		isDisabled, 
+		valCompanyName = '',
+		valCatchPhrase = '',
+		valBs = '',
+		onChange 
+	} = props;
 
   return (
     <Fragment>

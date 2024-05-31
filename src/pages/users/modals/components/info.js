@@ -6,13 +6,13 @@ function Info(props) {
     isDisabledUsername,
     isDisabled,
     valImages,
-    valUsername,
-    valName,
-    valEmail,
-    valPhone,
-    valWebsite,
+    valUsername = '',
+    valName = '',
+    valEmail = '',
+    valPhone = '',
+    valWebsite = '',
     onChange,
-    errors
+    errors = {}
   } = props;
 
   return (
@@ -42,9 +42,9 @@ function Info(props) {
               disabled={isDisabledUsername}
               required
             />
-            {errors && errors?.username && (
+            {errors.username && (
               <div className="invalid-feedback" style={{ display: 'block' }}>
-                {errors?.username}
+                {errors.username}
               </div>
             )}
           </div>
@@ -63,9 +63,9 @@ function Info(props) {
               disabled={isDisabled}
               required
             />
-            {errors && errors?.name && (
+            {errors.name && (
               <div className="invalid-feedback" style={{ display: 'block' }}>
-                {errors?.name}
+                {errors.name}
               </div>
             )}
           </div>
@@ -84,9 +84,9 @@ function Info(props) {
               disabled={isDisabled}
               required
             />
-            {errors && errors?.email && (
+            {errors.email && (
               <div className="invalid-feedback" style={{ display: 'block' }}>
-                {errors?.email}
+                {errors.email}
               </div>
             )}
           </div>
@@ -117,9 +117,9 @@ function Info(props) {
               value={valWebsite}
               disabled={isDisabled}
             />
-            {errors && errors?.website && (
+            {errors.website && (
               <div className="invalid-feedback" style={{ display: 'block' }}>
-                {errors?.website}
+                {errors.website}
               </div>
             )}
           </div>

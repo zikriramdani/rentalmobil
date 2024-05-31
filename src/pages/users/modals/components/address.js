@@ -2,7 +2,14 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 function Address(props) {
-  const { isDisabled, valStreet, valSuite, valCity, valZipcode, onChange } = props;
+  const { 
+		isDisabled, 
+		valStreet = '', 
+		valSuite = '', 
+		valCity = '', 
+		valZipcode = '', 
+		onChange 
+	} = props;
 
   return (
     <Fragment>

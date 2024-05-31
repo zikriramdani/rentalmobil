@@ -19,6 +19,7 @@
   },
   "rules": {
     //add customize rules here as per your project's needs
-    "react-hooks/exhaustive-deps": "off"
+    "react-hooks/exhaustive-deps": "off",
+		"no-unused-vars": "off"
   }
 }
