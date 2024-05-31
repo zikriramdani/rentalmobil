@@ -2,6 +2,8 @@
 
 Please visit <https://aplikasisederhanareact.netlify.app>
 
+Issues <https://github.com/zikriramdani/aplikasi-sederhana-reactjs/issues/1>
+
 ## Beberapa Fitur yang tersedia:
 
 - Data Users
@@ -26,6 +28,7 @@ npm start
 ```
 
 ## Deploy
+
 ```bash
 Netlify
 ```

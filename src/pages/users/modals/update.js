@@ -144,7 +144,6 @@ function Update(props) {
       setErrors(validationErrors);
     } else {
       setIsLoading(true);
-      console.log('form', formData);
       try {
         await dispatch(updateUser(dataItem?.id, formData));
         setAlertSuccess(true);
