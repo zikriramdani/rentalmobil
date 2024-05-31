@@ -12,7 +12,6 @@ import { createUser } from '../../../redux/action/users/creator';
 function Create(props) {
 	const { onClose, onShow, setAlertSuccess, alertSuccess, setAlertError, alertError } = props;
 	const [formData, setFormData] = useState({
-		banner: "https://www.bootdey.com/image/340x120/808080/000000",
     username: "",
     name: "",
     email: "",
@@ -81,7 +80,6 @@ function Create(props) {
 
 	const resetForm = () => {
 		setFormData({
-			banner: "https://www.bootdey.com/image/340x120/808080/000000",
 			username: "",
 			name: "",
 			email: "",
