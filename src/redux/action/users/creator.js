@@ -2,7 +2,7 @@ import { actionType } from '../users/type';
 import { generateRandomId } from '../../../helpers/utils';
 
 // Data Json
-import DataUsers from "../../../assets/data/users.json";
+import DataUsers from '../../../assets/data/users.json';
 
 // Mengirimkan aksi saveListUsers dengan data dari DataUsers.
 export const getListUsers = () => {
@@ -14,8 +14,8 @@ export const getListUsers = () => {
 // Mengembalikan aksi dengan tipe loadUsers dan muatan yang berisi data users
 export const saveListUsers = (payload) => {
   return {
-      type: actionType.loadUsers,
-      payload: payload
+    type: actionType.loadUsers,
+    payload: payload
   };
 };
 
@@ -28,7 +28,7 @@ export const createUser = (users) => ({
 // Delete
 export const deleteUser = (userId) => ({
   type: actionType.deleteUser,
-  payload: userId,
+  payload: userId
 });
 
 // Update
