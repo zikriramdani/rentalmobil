@@ -1,4 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 // Modals
 import ZRModals from "../../../components/ZRModals"
@@ -162,5 +163,15 @@ function Create(props) {
 		/>
   );
 }
+
+// Define prop types
+Create.propTypes = {
+	onClose: PropTypes.any,
+	onShow: PropTypes.any,
+	setAlertSuccess: PropTypes.any,
+	alertSuccess: PropTypes.any,
+	setAlertError: PropTypes.any,
+	alertError: PropTypes.any,
+};
 
 export default Create;

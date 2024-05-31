@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import PropTypes from 'prop-types';
 
 function Address(props) {
 	const {
@@ -43,5 +44,15 @@ function Address(props) {
 		</Fragment>
 	);
 }
+
+// Define prop types
+Address.propTypes = {
+  isDisabled: PropTypes.any,
+	valStreet: PropTypes.any,
+	valSuite: PropTypes.any,
+	valCity: PropTypes.any,
+	valZipcode: PropTypes.any,
+	onChange: PropTypes.any,
+};
 
 export default Address;
