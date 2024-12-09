@@ -5,70 +5,35 @@ import ZRModals from '../../../components/ZRModals';
 
 // Components
 import Info from './components/info';
-import Address from './components/address';
-import Company from './components/company';
 
 // Redux
 import { useDispatch } from 'react-redux';
-import { updateUser } from '../../../redux/action/users/creator';
+import { updateCar } from '../../../redux/action/cars/creator';
 
 function Update(props) {
   const { onClose, onShow, dataItem, setAlertSuccess, alertSuccess, setAlertError, alertError } =
     props;
   const [formData, setFormData] = useState({
-    username: '',
+    image: '',
     name: '',
-    email: '',
-    phone: '',
-    website: '',
-    address: {
-      street: '',
-      suite: '',
-      city: '',
-      zipcode: '',
-      geo: {
-        lat: '-37.3159',
-        lng: '81.1496'
-      }
-    },
-    company: {
-      name: '',
-      catchPhrase: '',
-      bs: ''
-    }
+    month_rate: '',
+    day_rate: ''
   });
+  const [imagePreview, setImagePreview] = useState(null);
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
   const dispatch = useDispatch();
 
   const handleChange = (e, object) => {
-    const { name, value } = e.target;
-    if (object === 'address') {
-      setFormData((prevFormData) => ({
-        ...prevFormData,
-        address: {
-          ...prevFormData.address,
-          [name]: value
-        }
-      }));
-    } else if (object === 'company') {
-      if (name === 'company_name') {
-        setFormData((prevFormData) => ({
-          ...prevFormData,
-          company: {
-            ...prevFormData.company,
-            name: value
-          }
-        }));
-      } else {
-        setFormData((prevFormData) => ({
-          ...prevFormData,
-          company: {
-            ...prevFormData.company,
-            [name]: value
-          }
-        }));
+    const { name, value, files } = e.target;
+
+    if (name === 'image') {
+      const file = files[0];
+      setFormData({ ...formData, [name]: file });
+
+      if (file) {
+        setImagePreview(URL.createObjectURL(file));
       }
     } else {
       setFormData({
@@ -86,17 +51,14 @@ function Update(props) {
 
   const validateField = (name, value) => {
     switch (name) {
-      case 'username':
-        return value ? '' : 'Username is required.';
+      case 'image':
+        return value ? '' : 'Image is required.';
       case 'name':
         return value ? '' : 'Name is required.';
-      case 'email':
-        if (!value) return 'Email is required.';
-        return /\S+@\S+\.\S+/.test(value) ? '' : 'Email is invalid.';
-      case 'website':
-        if (value && !/^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/.test(value))
-          return 'Website URL is invalid.';
-        return '';
+      case 'month_rate':
+        return value ? '' : 'Month Rate is required.';
+      case 'day_rate':
+        return value ? '' : 'Day Rate is required.';
       default:
         return '';
     }
@@ -113,27 +75,12 @@ function Update(props) {
 
   const resetForm = () => {
     setFormData({
-      username: '',
+      image: '',
       name: '',
-      email: '',
-      phone: '',
-      website: '',
-      address: {
-        street: '',
-        suite: '',
-        city: '',
-        zipcode: '',
-        geo: {
-          lat: '-37.3159',
-          lng: '81.1496'
-        }
-      },
-      company: {
-        name: '',
-        catchPhrase: '',
-        bs: ''
-      }
+      month_rate: '',
+      day_rate: ''
     });
+    setImagePreview('');
     onClose();
   };
 
@@ -145,7 +92,7 @@ function Update(props) {
     } else {
       setIsLoading(true);
       try {
-        await dispatch(updateUser(dataItem?.id, formData));
+        await dispatch(updateCar(dataItem?.id, formData));
         setAlertSuccess(true);
         resetForm();
       } catch (error) {
@@ -158,26 +105,10 @@ function Update(props) {
 
   const getDataForm = () => {
     setFormData({
-      username: dataItem?.username,
+      image: dataItem?.image,
       name: dataItem?.name,
-      email: dataItem?.email,
-      phone: dataItem?.phone,
-      website: dataItem?.website,
-      address: {
-        street: dataItem?.address?.street,
-        suite: dataItem?.address?.suite,
-        city: dataItem?.address?.city,
-        zipcode: dataItem?.address?.zipcode,
-        geo: {
-          lat: '-37.3159',
-          lng: '81.1496'
-        }
-      },
-      company: {
-        name: dataItem?.company?.name,
-        catchPhrase: dataItem?.company?.catchPhrase,
-        bs: dataItem?.company?.bs
-      }
+      month_rate: dataItem?.month_rate,
+      day_rate: dataItem?.day_rate
     });
   };
 
@@ -206,29 +137,17 @@ function Update(props) {
         <Fragment>
           <Info
             isDisabledUsername={true}
-            valImages={`https://picsum.photos/id/${dataItem?.id}/315/315.webp`}
-            valUsername={formData?.username}
+            imagePreview={
+              dataItem?.image instanceof File
+                ? URL?.createObjectURL(dataItem?.image)
+                : imagePreview || dataItem?.image
+            }
+            valImages={formData?.image}
             valName={formData?.name}
-            valEmail={formData?.email}
-            valPhone={formData?.phone}
-            valWebsite={formData?.website}
+            valMonthRate={formData?.month_rate}
+            valDayRate={formData?.day_rate}
             onChange={handleChange}
             errors={errors}
-          />
-          <hr />
-          <Address
-            valStreet={formData?.address?.street}
-            valSuite={formData?.address?.suite}
-            valCity={formData?.address?.city}
-            valZipcode={formData?.address?.zipcode}
-            onChange={(e) => handleChange(e, 'address')}
-          />
-          <hr />
-          <Company
-            valCompanyName={formData?.company?.name}
-            valCatchPhrase={formData?.company?.catchPhrase}
-            valBs={formData?.company?.bs}
-            onChange={(e) => handleChange(e, 'company')}
           />
         </Fragment>
       }

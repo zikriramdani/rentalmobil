@@ -5,10 +5,10 @@ import PropTypes from 'prop-types';
 import ZRModals from '../../../components/ZRModals';
 
 import { useDispatch } from 'react-redux';
-import { deleteUser } from '../../../redux/action/users/creator';
+import { deleteOrder } from '../../../redux/action/orders/creator';
 
 function Delete(props) {
-  const { onClose, onShow, userId, setAlertSuccess, alertSuccess, setAlertError, alertError } =
+  const { onClose, onShow, orderId, setAlertSuccess, alertSuccess, setAlertError, alertError } =
     props;
 
   const dispatch = useDispatch();
@@ -18,7 +18,7 @@ function Delete(props) {
     e.preventDefault();
     setIsLoading(true);
     try {
-      await dispatch(deleteUser(userId));
+      await dispatch(deleteOrder(orderId));
       setAlertSuccess(true);
       onClose();
     } catch (error) {
@@ -49,7 +49,7 @@ function Delete(props) {
       onShow={onShow}
       title="Delete"
       customModalDialog=" "
-      body={<p>Are you sure you want to delete your {userId} ?</p>}
+      body={<p>Are you sure you want to delete your {orderId} ?</p>}
       footer={
         <Fragment>
           <button onClick={onClose} type="button" className="btn btn-secondary">
@@ -73,7 +73,7 @@ function Delete(props) {
 Delete.propTypes = {
   onClose: PropTypes.any,
   onShow: PropTypes.any,
-  userId: PropTypes.any,
+  orderId: PropTypes.any,
   setAlertSuccess: PropTypes.any,
   alertSuccess: PropTypes.any,
   setAlertError: PropTypes.any,

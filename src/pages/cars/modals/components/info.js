@@ -1,54 +1,47 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 function Info(props) {
   const {
-    isDisabledUsername,
     isDisabled,
+    imagePreview,
     valImages,
-    valUsername = '',
     valName = '',
-    valEmail = '',
-    valPhone = '',
-    valWebsite = '',
+    valMonthRate = '',
+    valDayRate = '',
     onChange,
-    errors = {}
+    errors = {},
+    page
   } = props;
 
   return (
     <Fragment>
-      <div className="d-flex justify-content-center">
-        <div>
-          <img
-            src={valImages}
-            className="rounded-circle"
-            style={{ width: '100px' }}
-            alt={valName}
-          />
-        </div>
-      </div>
       <div className="row">
         <div className="col-12 col-sm-4">
           <div className="mb-3">
-            <label className="col-form-label">
-              Username<span className="text-danger">*</span>
-            </label>
-            <input
-              onChange={onChange}
-              type="text"
-              className="form-control"
-              name="username"
-              value={valUsername}
-              disabled={isDisabledUsername}
-              required
-            />
-            {errors.username && (
+            {imagePreview ? (
+              <img src={imagePreview} style={{ width: '100px' }} alt={valName} />
+            ) : null}
+            {page !== 'details' && (
+              <input
+                onChange={onChange}
+                type="file"
+                className="form-control"
+                name="image"
+                disabled={isDisabled}
+                required
+                accept="image/*"
+              />
+            )}
+            {errors.image && (
               <div className="invalid-feedback" style={{ display: 'block' }}>
-                {errors.username}
+                {errors.image}
               </div>
             )}
           </div>
         </div>
+      </div>
+      <div className="row">
         <div className="col-12 col-sm-4">
           <div className="mb-3">
             <label className="col-form-label">
@@ -73,53 +66,39 @@ function Info(props) {
         <div className="col-12 col-sm-4">
           <div className="mb-3">
             <label className="col-form-label">
-              Email<span className="text-danger">*</span>
+              Month Rate<span className="text-danger">*</span>
             </label>
             <input
               onChange={onChange}
-              type="email"
               className="form-control"
-              name="email"
-              value={valEmail}
+              name="month_rate"
+              value={valMonthRate}
               disabled={isDisabled}
               required
             />
-            {errors.email && (
+            {errors.month_rate && (
               <div className="invalid-feedback" style={{ display: 'block' }}>
-                {errors.email}
+                {errors.month_rate}
               </div>
             )}
           </div>
         </div>
-      </div>
-      <div className="row">
         <div className="col-12 col-sm-4">
           <div className="mb-3">
-            <label className="col-form-label">Phone</label>
+            <label className="col-form-label">
+              Day Rate<span className="text-danger">*</span>
+            </label>
             <input
               onChange={onChange}
-              type="tel"
               className="form-control"
-              name="phone"
-              value={valPhone}
+              name="day_rate"
+              value={valDayRate}
               disabled={isDisabled}
+              required
             />
-          </div>
-        </div>
-        <div className="col-12 col-sm-4">
-          <div className="mb-3">
-            <label className="col-form-label">Website</label>
-            <input
-              onChange={onChange}
-              type="url"
-              className="form-control"
-              name="website"
-              value={valWebsite}
-              disabled={isDisabled}
-            />
-            {errors.website && (
+            {errors.day_rate && (
               <div className="invalid-feedback" style={{ display: 'block' }}>
-                {errors.website}
+                {errors.day_rate}
               </div>
             )}
           </div>
@@ -134,13 +113,13 @@ Info.propTypes = {
   isDisabledUsername: PropTypes.any,
   isDisabled: PropTypes.any,
   valImages: PropTypes.any,
-  valUsername: PropTypes.any,
   valName: PropTypes.any,
-  valEmail: PropTypes.any,
-  valPhone: PropTypes.any,
-  valWebsite: PropTypes.any,
+  valMonthRate: PropTypes.any,
+  valDayRate: PropTypes.any,
   onChange: PropTypes.any,
-  errors: PropTypes.any
+  errors: PropTypes.any,
+  imagePreview: PropTypes.any,
+  page: PropTypes.any
 };
 
 export default Info;

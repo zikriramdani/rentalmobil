@@ -1,4 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 // Component
 import ZRAlert from '../../components/ZRAlert';
@@ -11,10 +12,10 @@ import CreateModals from './modals/create';
 
 // Redux
 import { useSelector, useDispatch } from 'react-redux';
-import { getListUsers } from '../../redux/action/users/creator';
+import { getListCars } from '../../redux/action/cars/creator';
 
 function Index() {
-  const usersList = useSelector((state) => state.users.usersList);
+  const carsList = useSelector((state) => state.cars.carsList);
   const dispatch = useDispatch();
 
   const [showCreate, setShowCreate] = useState(false);
@@ -45,8 +46,8 @@ function Index() {
     setShowDelete(id);
   };
 
-  const getDataListUsers = () => {
-    dispatch(getListUsers());
+  const getDataListCars = () => {
+    dispatch(getListCars());
   };
 
   const anotherAlertCreate = () => {
@@ -81,7 +82,7 @@ function Index() {
   };
 
   useEffect(() => {
-    getDataListUsers();
+    getDataListCars();
   }, []);
 
   return (
@@ -93,39 +94,36 @@ function Index() {
               onClick={() => setShowCreate(true)}
               className="btn btn-primary btn-sm flex-fill has-icon w-100"
             >
-              Create
+              Create Car
             </button>
+          </div>
+          <div className="col">
+            <Link to={`/orders`} className="btn btn-info btn-sm flex-fill has-icon w-100">
+              Order Page
+            </Link>
           </div>
         </div>
         {anotherAlertCreate()}
         {anotherAlertDelete()}
         {anotherAlertEdit()}
-        {usersList?.length > 0 ? (
+        {carsList?.length > 0 ? (
           <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 gutters-sm">
-            {usersList?.map((item, i) => (
+            {carsList?.map((item, i) => (
               <div className="col mb-3" key={item?.id || i}>
                 <div className="card">
                   <img
-                    src={`https://picsum.photos/id/${item?.id}/340/120.webp`}
+                    src={
+                      item?.image instanceof File ? URL?.createObjectURL(item?.image) : item?.image
+                    }
                     alt="Cover"
                     className="card-img-top"
+                    style={{ height: '200px' }}
                   />
-                  <div
-                    className="card-body text-center"
-                    style={{ maxHeight: '183px', minHeight: '183px' }}
-                  >
-                    <img
-                      src={`https://picsum.photos/id/${item?.id}/315/315.webp`}
-                      style={{ width: '100px', marginTop: '-65px' }}
-                      alt="User"
-                      className="img-fluid img-thumbnail rounded-circle border-0 mb-3"
-                    />
-                    <h5 className="card-title ZR-text-limit" title={item?.name}>
-                      {item?.name}
-                    </h5>
-                    <p className="text-secondary mb-1">{item?.phone}</p>
-                    <p className="text-muted font-size-sm text-truncate" title={item?.email}>
-                      {item?.email}
+                  <div className="card-body">
+                    <h5 className="card-title">Name : {item?.name}</h5>
+                    <p className="text-secondary mb-1">Month Rate : {item?.month_rate}</p>
+                    <p className="text-muted font-size-sm text-truncate">
+                      Day Rate: {item?.day_rate}
                     </p>
                   </div>
                   <div className="card-footer d-flex">
@@ -196,7 +194,7 @@ function Index() {
       <DeleteModals
         onClose={() => setShowDelete(false)}
         onShow={showDelete}
-        userId={showDelete}
+        carId={showDelete}
         setAlertSuccess={setAlertSuccessDelete}
         alertSuccess={alertSuccessDelete}
         setAlertError={setAlertErrorDelete}
